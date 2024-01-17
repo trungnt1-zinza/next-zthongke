@@ -29,19 +29,15 @@ const About = () => {
     await webcam.play();
     setWebcam(webcam);
     window.requestAnimationFrame(loop);
+    document.getElementById("webcam-container").appendChild(webcam.canvas);
     const labelContainer = document.getElementById("label-container");
     setLabelContainer(labelContainer);
     for (let i = 0; i < maxPredictions; i++) {
       labelContainer.appendChild(document.createElement("div"));
     }
   };
-  console.log(
-    "%c🤪 ~ file: index.jsx:37 [About/init] -> webcam : ",
-    "color: #d9a3a4",
-    webcam
-  );
+
   const loop = async () => {
-    console.log(webcam);
     webcam.update();
     await predict();
     window.requestAnimationFrame(loop);
