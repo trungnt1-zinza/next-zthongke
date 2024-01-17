@@ -69,13 +69,31 @@ const About = () => {
     }
 
     const newDate = formatDate(new Date());
-    for (const namePlayerObject of namePlayerObjects) {
-      if (namePlayerObject["name"] === predictedName) {
-        namePlayerObject["count"]++;
-        namePlayerObject["day"] = newDate;
-        await postNotes(namePlayerObject);
-        break;
+    if (namePlayerObjects.length > 0) {
+      for (const namePlayerObject of namePlayerObjects) {
+        console.log(namePlayerObject["name"]);
+        if (namePlayerObject["name"] === predictedName) {
+          namePlayerObject["count"]++;
+          console.log("Tham gia x", namePlayerObject);
+          namePlayerObject["day"] = newDate;
+          await postNotes(namePlayerObject);
+          console.log("Tham gia x", namePlayerObject.count);
+          break; // Thoát khỏi vòng lặp sau khi tìm thấy tên trùng khớp
+        }
       }
+    } else {
+      const namePlayerObject = {
+        name: `${predictedName}`,
+        count: 1,
+        day: newDate,
+        places: 0,
+        event: 0,
+        bounty: 0,
+        jackpot: 0,
+      };
+      console.log(namePlayerObject);
+
+      await postNotes(namePlayerObject);
     }
   };
 
