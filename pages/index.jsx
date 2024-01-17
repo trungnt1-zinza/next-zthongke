@@ -35,6 +35,11 @@ const About = () => {
       labelContainer.appendChild(document.createElement("div"));
     }
   };
+  console.log(
+    "%c🤪 ~ file: index.jsx:37 [About/init] -> webcam : ",
+    "color: #d9a3a4",
+    webcam
+  );
   const loop = async () => {
     console.log(webcam);
     webcam.update();
