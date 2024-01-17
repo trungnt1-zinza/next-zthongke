@@ -36,6 +36,7 @@ const About = () => {
     }
   };
   const loop = async () => {
+    console.log(webcam);
     webcam.update();
     await predict();
     window.requestAnimationFrame(loop);
@@ -53,11 +54,6 @@ const About = () => {
   };
   const end = async () => {
     const namePlayerObjects = await getNotes();
-    console.log(
-      "%c🤪 ~ file: index.jsx:66 [About/end] -> namePlayerObjects : ",
-      "color: #d8ff48",
-      namePlayerObjects
-    );
     setNamePlayerObjects(namePlayerObjects);
     function formatDate(date) {
       const day = date.getDate();
