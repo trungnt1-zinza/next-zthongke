@@ -53,6 +53,7 @@ const About = () => {
     const predictions = await model.predictTopK(webcam.canvas, 1);
     setPredictedName(predictions[0].className);
   };
+
   const end = async () => {
     const namePlayerObjects = await getNotes();
     setNamePlayerObjects(namePlayerObjects);
@@ -87,6 +88,7 @@ const About = () => {
         jackpot: 0,
       };
       await postNotes(namePlayerObject);
+      await webcam.stop();
     }
   };
 
@@ -106,6 +108,17 @@ const About = () => {
     });
     return response;
   };
+
+  const deleteOne = async () => {
+    const response = await fetch("https://azure-chief-ceder.glitch.me/test", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response;
+  };
+
   const showName = async () => {
     const tbodyText = [];
     const names = await getNotes();
@@ -114,6 +127,9 @@ const About = () => {
       tbodyText.push(`<tr>
         <td>${name.name}</td>
         <td>${name.count}</td>
+        <button type="button" onClick={deleteOne}>
+        delete lần 1
+      </button>
     </tr>`);
     });
     document.getElementById("tbody").innerHTML = tbodyText.join();
@@ -123,16 +139,16 @@ const About = () => {
     <div>
       <div>Teachable Machine Image Model</div>
       <button type="button" onClick={init}>
-        Start
+        Bắt đầu quét mặt
       </button>
       <button type="button" onClick={end}>
-        End
+        Xác nhận tham gia
       </button>
-      <button type="button" onClick={getNotes}>
+      {/* <button type="button" onClick={getNotes}>
         getNotes
-      </button>
+      </button> */}
       <button type="button" onClick={showName}>
-        showName
+        Hiển thị những nguười đã tham gia
       </button>
 
       <h2>Bảng Tham Gia</h2>

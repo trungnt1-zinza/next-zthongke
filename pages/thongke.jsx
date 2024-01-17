@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
 import "@handsontable/pikaday/css/pikaday.css";
 import { HotTable, HotColumn } from "@handsontable/react";
 import { data } from "../utils/constants.ts";
@@ -9,7 +8,6 @@ import { addClassesToRows, alignHeaders } from "../utils/hooksCallbacks";
 import "handsontable/dist/handsontable.min.css";
 
 const App1 = () => {
-  console.log(data);
   return (
     <HotTable
       data={data}
@@ -19,7 +17,7 @@ const App1 = () => {
         "Name",
         "giải",
         "ngày ",
-        "Có tham gia không",
+        "Có chơi không",
         "Lệ phí",
         "tham gia x",
         "vị trí",

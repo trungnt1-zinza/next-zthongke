@@ -15,7 +15,7 @@ interface Item {
   jackpot: number;
 }
 async function fetchData() {
-  const data1 = await fetch("https://azure-chief-ceder.glitch.me/test");
+  const data1 = await fetch("https://azure-chief-ceder.glitch.me/tests");
   const dataJson = await data1.json();
   return dataJson;
 }
