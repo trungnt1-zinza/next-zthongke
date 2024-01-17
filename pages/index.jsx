@@ -9,9 +9,9 @@ const About = () => {
   const [predictedName, setPredictedName] = useState(null);
   const [namePlayerObjects, setNamePlayerObjects] = useState(null);
 
-  useEffect(() => {
-    init();
-  }, []);
+  // useEffect(() => {
+  //   init();
+  // }, []);
 
   const init = async () => {
     // Your init function here
@@ -60,24 +60,19 @@ const About = () => {
       const day = date.getDate();
       const month = date.getMonth() + 1; // Months are zero-based
       const year = date.getFullYear();
-
       // Ensure leading zero for day and month if they are single digits
       const formattedDay = day < 10 ? `0${day}` : day;
       const formattedMonth = month < 10 ? `0${month}` : month;
-
       return `${formattedDay}/${formattedMonth}/${year}`;
     }
 
     const newDate = formatDate(new Date());
     if (namePlayerObjects.length > 0) {
       for (const namePlayerObject of namePlayerObjects) {
-        console.log(namePlayerObject["name"]);
         if (namePlayerObject["name"] === predictedName) {
           namePlayerObject["count"]++;
-          console.log("Tham gia x", namePlayerObject);
           namePlayerObject["day"] = newDate;
           await postNotes(namePlayerObject);
-          console.log("Tham gia x", namePlayerObject.count);
           break; // Thoát khỏi vòng lặp sau khi tìm thấy tên trùng khớp
         }
       }
@@ -91,8 +86,6 @@ const About = () => {
         bounty: 0,
         jackpot: 0,
       };
-      console.log(namePlayerObject);
-
       await postNotes(namePlayerObject);
     }
   };
